@@ -4,7 +4,6 @@ import {
   loadFooter,
   decorateButtons,
   decorateIcons,
-  decorateSections,
   decorateBlocks,
   decorateTemplateAndTheme,
   waitForFirstImage,
@@ -12,6 +11,7 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
+import { decorateSections } from './da.js';
 
 /**
  * Builds hero block and prepends to main in a new section.
