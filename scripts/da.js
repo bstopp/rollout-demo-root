@@ -10,11 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
+import { readBlockConfig, toCamelCase, toClassName } from './aem.js';
+
 /**
  * Decorates all sections in a container element.
  * @param {Element} main The container element
  */
-export function decorateSections(main) {
+function decorateSections(main) {
   main.querySelectorAll(':scope > div').forEach((section) => {
     const wrappers = [];
     let defaultContent = false;
@@ -62,18 +64,7 @@ export function decorateSections(main) {
   });
 }
 
-const { searchParams, origin } = new URL(window.location.href);
-const branch = searchParams.get('nx') || 'main';
-
-export const NX_ORIGIN = branch === 'local' || origin.includes('localhost') ? 'http://localhost:6456/nx' : 'https://da.live/nx';
-
-(async function loadDa() {
-  /* eslint-disable import/no-unresolved */
-  if (searchParams.get('dapreview')) {
-    import('https://da.live/scripts/dapreview.js')
-      .then(({ default: daPreview }) => daPreview(loadPage));
-  }
-  if (searchParams.get('daexperiment')) {
-    import(`${NX_ORIGIN}/public/plugins/exp/exp.js`);
-  }
-}());
+export {
+  // eslint-disable-next-line import/prefer-default-export
+  decorateSections,
+};
